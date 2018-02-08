@@ -26,6 +26,11 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -43,7 +48,6 @@ public class HomeFragment extends Fragment implements LocationListener, GoogleAp
     private double latitude;
     private double longitude;
     private Button btn_InTime, btn_OutTime;
-
 
     public HomeFragment() {
         // Required empty public constructor
@@ -66,6 +70,12 @@ public class HomeFragment extends Fragment implements LocationListener, GoogleAp
         String formattedDate = df.format(date.getTime());
         txt_currentdate.setText(formattedDate);
 
+        check();
+
+        return view;
+    }
+
+    private void check() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
             checkLocationPermission();
             // Do things the Lollipop way
@@ -82,8 +92,6 @@ public class HomeFragment extends Fragment implements LocationListener, GoogleAp
         } else {
             Log.d("onCreate", "Google Play Services available.");
         }
-
-        return view;
     }
 
     private boolean CheckGooglePlayServices() {
@@ -121,51 +129,26 @@ public class HomeFragment extends Fragment implements LocationListener, GoogleAp
 
     }
 
-    @Override
-    public void onLocationChanged(Location location) {
-        Log.d("onLocationChanged", "entered");
-        mLastLocation = location;
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
-
-        Log.e("latlong:", location.getLatitude() + "" + location.getLongitude());
-
-        Log.d("onLocationChanged", String.format("latitude:%.3f longitude:%.3f", latitude, latitude));
-
-        //stop location updates
-        if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-            Log.d("onLocationChanged", "Removing Location Updates");
-        }
-        Log.d("onLocationChanged", "Exit");
-
-        Toast.makeText(getActivity(), location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
-
-    }
 
     public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             // Asking user if explanation is needed
-            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
 
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
 
                 //Prompt the user once explanation has been shown
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
 
 
             } else {
                 // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
             }
             return false;
         } else {
@@ -210,5 +193,26 @@ public class HomeFragment extends Fragment implements LocationListener, GoogleAp
                 .addApi(LocationServices.API)
                 .build();
         mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Log.d("onLocationChanged", "entered");
+
+        mLastLocation = location;
+        //Place current location marker
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
+        //move map camera
+
+
+        Log.d("onLocationChanged", String.format("latitude:%.3f longitude:%.3f", latitude, longitude));
+
+        //stop location updates
+        if (mGoogleApiClient != null) {
+            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+            Log.d("onLocationChanged", "Removing Location Updates");
+        }
+        Log.d("onLocationChanged", "Exit");
     }
 }

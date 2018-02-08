@@ -1,5 +1,6 @@
 package com.example.employeesattendance.employee.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -12,11 +13,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.employeesattendance.employee.model.GetProfileResponse;
 import com.example.employeesattendance.utils.ClickListener;
 import com.example.employeesattendance.utils.Constant;
 import com.example.employeesattendance.R;
@@ -28,16 +31,27 @@ import com.example.employeesattendance.employee.fragmrnts.HelpFragment;
 import com.example.employeesattendance.employee.fragmrnts.HomeFragment;
 import com.example.employeesattendance.employee.fragmrnts.ProfileFragment;
 import com.example.employeesattendance.employee.fragmrnts.SalaryReportFragment;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 public class EmployeeDashBoard extends AppCompatActivity  {
 
-    public ImageView toolbar_icon;
+    private static final String TAG = "EmployeeDashBoard";
+    public ImageView toolbar_icon, img_profile;
     private DrawerLayout drawer;
     public LinearLayoutManager layoutManager;
     public Toolbar toolbar;
     private TextView toolbar_title2;
     public ImageView admin_toolbar_profile;
     public RecyclerView recyclerView;
+    private ProgressDialog pd;
     private TextView txt_home,txt_profilFirstname, txt_profilLastname, txt_attendance, txt_salary_report, txt_help, txt_logout,txt_profile;
 
     @Override
@@ -56,6 +70,11 @@ public class EmployeeDashBoard extends AppCompatActivity  {
                     drawer.openDrawer(Gravity.START);
             }
         });
+        img_profile = (ImageView) findViewById(R.id.img_profile);
+        txt_profilLastname = (TextView) findViewById(R.id.txt_profilLastname);
+        txt_profilFirstname = (TextView) findViewById(R.id.txt_profilFirstname);
+
+        getProfile();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         openDefaultFragment();
@@ -113,6 +132,51 @@ public class EmployeeDashBoard extends AppCompatActivity  {
         }));
 
 
+    }
+
+    private void getProfile() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.setBasicAuth(Constant.USERNAME, Constant.PASSWORD);
+        RequestParams params = new RequestParams();
+        params.put("user_id", Utils.ReadSharePrefrence(EmployeeDashBoard.this, Constant.USERID));
+
+        Log.e(TAG, "USERURL:" + Constant.BASE_URL + "get_profile.php?" + params);
+        Log.e(TAG, params.toString());
+        client.post(this, Constant.BASE_URL + "get_profile.php?", params, new JsonHttpResponseHandler() {
+            @Override
+            public void onStart() {
+                super.onStart();
+            }
+
+            @Override
+            public void onFinish() {
+
+                super.onFinish();
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                Log.e(TAG, "Driver RESPONSE-" + response);
+                GetProfileResponse model = new Gson().fromJson(new String(String.valueOf(response)), GetProfileResponse.class);
+                if (model.getStatus().equalsIgnoreCase("true")) {
+                    txt_profilFirstname.setText(model.getData().getFirst_name());
+                    txt_profilLastname.setText(model.getData().getLast_name());
+                    if (model.getData().getImage().isEmpty()) {
+                        Picasso.with(EmployeeDashBoard.this).load(R.drawable.ic_profile_lite);
+                    } else {
+                        Picasso.with(EmployeeDashBoard.this).load(model.getData().getImage()).placeholder(R.drawable.ic_profile_lite).into(img_profile);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                Log.e(TAG, throwable.getMessage());
+            }
+        });
     }
 
     private void openDefaultFragment() {

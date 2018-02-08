@@ -92,14 +92,13 @@ public class ForgotpasswordActivity extends AppCompatActivity implements View.On
                 }else {
                     changepassword();
                 }
-
                 break;
         }
     }
 
     private void changepassword() {
         pd = new ProgressDialog(ForgotpasswordActivity.this);
-        pd.setMessage("");
+        pd.setMessage("Please Wait...");
         pd.setCancelable(false);
         pd.show();
         AsyncHttpClient client = new AsyncHttpClient();
