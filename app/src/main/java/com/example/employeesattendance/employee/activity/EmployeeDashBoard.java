@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.employeesattendance.employee.fragmrnts.HelpFragment;
 import com.example.employeesattendance.employee.model.GetProfileResponse;
 import com.example.employeesattendance.utils.ClickListener;
 import com.example.employeesattendance.utils.Constant;
@@ -27,7 +28,6 @@ import com.example.employeesattendance.utils.RecyclerTouchListener;
 import com.example.employeesattendance.utils.Utils;
 import com.example.employeesattendance.employee.adapter.NavigationDrawerAdapter;
 import com.example.employeesattendance.employee.fragmrnts.AttendanceReportFragment;
-import com.example.employeesattendance.employee.fragmrnts.HelpFragment;
 import com.example.employeesattendance.employee.fragmrnts.HomeFragment;
 import com.example.employeesattendance.employee.fragmrnts.ProfileFragment;
 import com.example.employeesattendance.employee.fragmrnts.SalaryReportFragment;
