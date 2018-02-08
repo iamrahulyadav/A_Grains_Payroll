@@ -131,7 +131,6 @@ public class EmployeeDashBoard extends AppCompatActivity  {
             }
         }));
 
-
     }
 
     private void getProfile() {
