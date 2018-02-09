@@ -36,13 +36,9 @@ public class AttendanceReportFragment extends Fragment implements View.OnClickLi
         return view;
     }
 
-    /**
-     * Called when a view has been clicked.
-     *
-     * @param v The view that was clicked.
-     */
     @Override
     public void onClick(View v) {
 
     }
+
 }

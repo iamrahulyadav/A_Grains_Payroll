@@ -13,6 +13,5 @@ public class Constant {
     public static final String USER_NAME = "user_name";
     public static final String PHONE_NUM = "phone_num";
     public static final String EMAIL = "email";
-    public static final String PROFILE_IMAGE = "profile_image";
     public static final String OTP = "otp";
 }

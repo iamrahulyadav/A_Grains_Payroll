@@ -26,11 +26,9 @@ public class SalaryReportFragment extends Fragment implements View.OnClickListen
     private CompactCalendarView admin_compactcalendar_view;
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMMM - yyyy", Locale.getDefault());
 
-
     public SalaryReportFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
