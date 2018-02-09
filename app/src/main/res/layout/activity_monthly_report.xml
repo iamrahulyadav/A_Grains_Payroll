@@ -270,9 +270,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
                 android:background="@color/view_bg"/>
-
         </LinearLayout>
     </ScrollView>
-
-
 </LinearLayout>
