@@ -6,59 +6,12 @@
     android:orientation="vertical"
     tools:context=".employee.fragmrnts.AttendanceReportFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
-        android:background="@color/white"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/activity_calendar_previousmonth"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_blue_left" />
-
-        <TextView
-            android:id="@+id/activity_calendar_monthname"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Calendar"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/_18sdp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/activity_calendar_nextmonth"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_gravity="center"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/ic_blue_right" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     </LinearLayout>
-
-    <com.github.sundeepk.compactcalendarview.CompactCalendarView
-        android:id="@+id/admin_compactcalendar_view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_150sdp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        app:compactCalendarBackgroundColor="#ffffff"
-        app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
-        app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
-        app:compactCalendarMultiEventIndicatorColor="#fff"
-        app:compactCalendarTextColor="#561010"
-        app:compactCalendarTextSize="@dimen/_10sdp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        android:background="@color/colorAccent" />
-
 </LinearLayout>
+
+

@@ -11,4 +11,5 @@
     <color name="btn_employee">#041a58</color>
     <color name="radio_btn">#51a3f1</color>
     <color name="transparent">#00000000</color>
+    <color name="view_bg">#55000000</color>
 </resources>
