@@ -21,7 +21,6 @@
             android:textSize="@dimen/_18sdp"
             android:textColor="@color/white" />
 
-
         <ImageView
             android:id="@+id/admin_toolbar_icon"
             android:layout_width="@dimen/_40sdp"
@@ -67,7 +66,8 @@
                         android:layout_marginRight="@dimen/_10sdp"
                         android:layout_alignParentRight="true"
                         android:layout_marginEnd="@dimen/_10sdp"
-                        android:textSize="@dimen/_16sdp"/>
+                        android:textSize="@dimen/_16sdp"
+                        android:text="Feb 2018"/>
                 </RelativeLayout>
             </LinearLayout>
             <View
@@ -218,6 +218,59 @@
             </LinearLayout>
 
         </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/view_bg"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:text="Advance Report"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/colorPrimaryDark"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textSize="@dimen/_13sdp"
+                    android:text="09-02-2018 :"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="@dimen/_180sdp"
+                        android:layout_marginRight="@dimen/_150sdp"
+                        android:textSize="@dimen/_13sdp"/>
+                </RelativeLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/view_bg"/>
+
         </LinearLayout>
     </ScrollView>
 
