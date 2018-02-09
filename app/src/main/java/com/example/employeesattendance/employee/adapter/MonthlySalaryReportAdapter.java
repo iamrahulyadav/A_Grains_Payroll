@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 public class MonthlySalaryReportAdapter extends RecyclerView.Adapter<MonthlySalaryReportAdapter.ViewHolder>{
 
 
-
     @Override
     public MonthlySalaryReportAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return null;
