@@ -27,7 +27,7 @@
 
 
                     <ImageView
-                        android:id="@+id/activity_calendar_previousmonth"
+                        android:id="@+id/img_calendar_privaous"
                         android:layout_width="@dimen/_25sdp"
                         android:layout_height="@dimen/_25sdp"
                         android:layout_gravity="center"
@@ -35,7 +35,7 @@
                         android:src="@drawable/ic_left" />
 
                     <TextView
-                        android:id="@+id/activity_calendar_monthname"
+                        android:id="@+id/txt_calendar_monthname"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -46,7 +46,7 @@
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:id="@+id/activity_calendar_nextmonth"
+                        android:id="@+id/img_calendar_next"
                         android:layout_width="@dimen/_25sdp"
                         android:layout_height="@dimen/_25sdp"
                         android:layout_gravity="center"
@@ -56,7 +56,7 @@
                 </LinearLayout>
 
                 <com.github.sundeepk.compactcalendarview.CompactCalendarView
-                    android:id="@+id/admin_compactcalendar_view"
+                    android:id="@+id/compactcalendar_view"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_150sdp"
                     android:paddingLeft="10dp"
@@ -79,6 +79,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txt_attendancecard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -99,6 +100,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/txt_firstdate"
                         android:layout_width="@dimen/_100sdp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -120,6 +122,7 @@
                         android:textSize="@dimen/_13sdp" />
 
                     <TextView
+                        android:id="@+id/txt_currentdate"
                         android:layout_width="@dimen/_100sdp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -291,6 +294,7 @@
                             android:layout_height="@dimen/_40sdp">
 
                             <TextView
+                                android:id="@+id/txt_morningdays"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
@@ -307,6 +311,7 @@
                             android:layout_height="@dimen/_40sdp">
 
                             <TextView
+                                android:id="@+id/txt_morning_P"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
@@ -323,6 +328,7 @@
                             android:layout_height="@dimen/_40sdp">
 
                             <TextView
+                                android:id="@+id/txt_morning_A"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
@@ -338,6 +344,13 @@
                             android:layout_width="@dimen/_50sdp"
                             android:layout_height="@dimen/_40sdp">
 
+                            <TextView
+                                android:id="@+id/txt_morning_H"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="@dimen/_13sdp" />
+
                         </RelativeLayout>
 
                         <View
@@ -350,6 +363,7 @@
                             android:layout_height="@dimen/_40sdp">
 
                             <TextView
+                                android:id="@+id/txt_morning_N"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
@@ -394,6 +408,7 @@
                             android:layout_height="@dimen/_40sdp">
 
                             <TextView
+                                android:id="@+id/txt_evaningdays"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
@@ -410,6 +425,7 @@
                             android:layout_height="@dimen/_40sdp">
 
                             <TextView
+                                android:id="@+id/txt_evaning_P"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
@@ -426,6 +442,7 @@
                             android:layout_height="@dimen/_40sdp">
 
                             <TextView
+                                android:id="@+id/txt_evaning_A"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
@@ -442,6 +459,7 @@
                             android:layout_height="@dimen/_40sdp">
 
                             <TextView
+                                android:id="@+id/txt_evaning_H"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
@@ -458,6 +476,7 @@
                             android:layout_height="@dimen/_40sdp">
 
                             <TextView
+                                android:id="@+id/txt_evaning_N"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"

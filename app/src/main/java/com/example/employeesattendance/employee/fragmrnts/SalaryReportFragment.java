@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.employeesattendance.R;
+import com.example.employeesattendance.employee.adapter.MonthlySalaryReportAdapter;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 
 import java.text.SimpleDateFormat;
@@ -23,6 +24,7 @@ import java.util.Locale;
 public class SalaryReportFragment extends Fragment implements View.OnClickListener {
 
     private RecyclerView recycler_view_month;
+    private MonthlySalaryReportAdapter monthlySalaryReportAdapter;
 
     public SalaryReportFragment() {
         // Required empty public constructor
