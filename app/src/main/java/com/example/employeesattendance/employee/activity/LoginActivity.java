@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText edit_email_login, edit_pass_login;
     private Button btn_signin, btn_Dforgot_pass;
     private ProgressDialog pd;
+    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +71,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(LoginActivity.this,ForgotpasswordActivity.class));
                 break;
             case R.id.btn_signin:
-                if (edit_email_login.getText().toString().isEmpty()){
+                if (edit_email_login.getText().length() == 0){
                     edit_email_login.setError("Enter Email Address");
+                }else if (!edit_email_login.getText().toString().matches(emailPattern)) {
+                    edit_email_login.setError("Please Insert Valid Email");
                 }else if (edit_pass_login.getText().toString().isEmpty()){
                     edit_pass_login.setError("Pleas Enter PassWord");
                 }else{
-                    SignIn();
+                    if (Utils.isConnectingToInternet(LoginActivity.this)) {
+                        SignIn();
+                    }else {
+                        Toast.makeText(this, "No Internet connection...", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
         }
@@ -110,14 +117,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 super.onSuccess(statusCode, headers, response);
                 Log.e(TAG, "LOGIN RESPONSE-" + response);
                 pd.dismiss();
-                LoginMainResponse model =new Gson().fromJson(new String(String.valueOf(response)),LoginMainResponse.class);
-                if (model.getStatus().equalsIgnoreCase("true")) {
-                    Utils.WriteSharePrefrence(LoginActivity.this, Constant.USERID,model.getData().getId());
-                    String Userid = Utils.ReadSharePrefrence(LoginActivity.this,Constant.USERID);
-                    startActivity(new Intent(LoginActivity.this, EmployeeDashBoard.class));
-                    finish();
-                }else {
-                    Toast.makeText(LoginActivity.this, "InValid Id and Password", Toast.LENGTH_SHORT).show();
+                if (!(response == null)) {
+                    LoginMainResponse model = new Gson().fromJson(new String(String.valueOf(response)), LoginMainResponse.class);
+                    if (model.getStatus().equalsIgnoreCase("true")) {
+                        Utils.WriteSharePrefrence(LoginActivity.this, Constant.USERID, model.getData().getId());
+                        String Userid = Utils.ReadSharePrefrence(LoginActivity.this, Constant.USERID);
+                        startActivity(new Intent(LoginActivity.this, EmployeeDashBoard.class));
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "InValid Id and Password", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 

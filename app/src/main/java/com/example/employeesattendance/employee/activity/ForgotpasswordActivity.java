@@ -73,7 +73,11 @@ public class ForgotpasswordActivity extends AppCompatActivity implements View.On
                 if (edit_email_for_pass.getText().toString().isEmpty()){
                     edit_email_for_pass.setError("Enter Your Email");
                 }else {
-                    sendOtp();
+                    if (Utils.isConnectingToInternet(ForgotpasswordActivity.this)) {
+                        sendOtp();
+                    }else {
+                        Toast.makeText(this, "No Internet connection...", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
             case R.id.btn_set_otp:
@@ -90,7 +94,11 @@ public class ForgotpasswordActivity extends AppCompatActivity implements View.On
                 if (edit_change_pass.getText().toString().isEmpty()){
                     edit_change_pass.setError("Enter password");
                 }else {
-                    changepassword();
+                    if (Utils.isConnectingToInternet(ForgotpasswordActivity.this)) {
+                        changepassword();
+                    }else {
+                        Toast.makeText(this, "No Internet connection...", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
         }
@@ -124,9 +132,11 @@ public class ForgotpasswordActivity extends AppCompatActivity implements View.On
                 super.onSuccess(statusCode, headers, response);
                 Log.e(TAG, "LOGIN RESPONSE-" + response);
                 pd.dismiss();
-                ChangePasswordResponse model =new Gson().fromJson(new String(String.valueOf(response)),ChangePasswordResponse.class);
-                if (model.getStatus().equalsIgnoreCase("true")) {
-                    startActivity(new Intent(ForgotpasswordActivity.this,LoginActivity.class));
+                if (!(response == null)) {
+                    ChangePasswordResponse model = new Gson().fromJson(new String(String.valueOf(response)), ChangePasswordResponse.class);
+                    if (model.getStatus().equalsIgnoreCase("true")) {
+                        startActivity(new Intent(ForgotpasswordActivity.this, LoginActivity.class));
+                    }
                 }
             }
 
@@ -165,12 +175,14 @@ public class ForgotpasswordActivity extends AppCompatActivity implements View.On
                 super.onSuccess(statusCode, headers, response);
                 Log.e(TAG, "LOGIN RESPONSE-" + response);
                 pd.dismiss();
-                GetOTPResponse model =new Gson().fromJson(new String(String.valueOf(response)),GetOTPResponse.class);
-                if (model.getStatus().equalsIgnoreCase("true")) {
-                    linear_enter_email.setVisibility(View.GONE);
-                    linear_set_otp.setVisibility(View.VISIBLE);
-                    Utils.WriteSharePrefrence(ForgotpasswordActivity.this,Constant.OTP,model.getData().getOtp());
-                    String otp = Utils.ReadSharePrefrence(ForgotpasswordActivity.this,Constant.OTP);
+                if (!(response == null)) {
+                    GetOTPResponse model = new Gson().fromJson(new String(String.valueOf(response)), GetOTPResponse.class);
+                    if (model.getStatus().equalsIgnoreCase("true")) {
+                        linear_enter_email.setVisibility(View.GONE);
+                        linear_set_otp.setVisibility(View.VISIBLE);
+                        Utils.WriteSharePrefrence(ForgotpasswordActivity.this, Constant.OTP, model.getData().getOtp());
+                        String otp = Utils.ReadSharePrefrence(ForgotpasswordActivity.this, Constant.OTP);
+                    }
                 }
             }
 

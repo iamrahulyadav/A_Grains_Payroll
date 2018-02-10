@@ -84,7 +84,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 }else if (validatePassword(edit_pass.getText().toString())){
                     edit_pass.setError("Please Enter atleast one number");
                 }else {
-                    signUp();
+                    if (Utils.isConnectingToInternet(SignUpActivity.this)) {
+                        signUp();
+                    }else {
+                        Toast.makeText(this, "No Internet connection...", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
         }
@@ -134,13 +138,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 super.onSuccess(statusCode, headers, response);
                 Log.e(TAG, "RESPONSE-" + response);
                 pd.dismiss();
-                RegisterMainResponse model =new Gson().fromJson(new String(String.valueOf(response)),RegisterMainResponse.class);
-                if (model.getStatus().equalsIgnoreCase("true")){
-                    Utils.WriteSharePrefrence(SignUpActivity.this,Constant.USERID,model.getData().getId());
-                    String user_id = Utils.ReadSharePrefrence(SignUpActivity.this,Constant.USERID);
-                    startActivity(new Intent(SignUpActivity.this,LoginActivity.class));
-                    Toast.makeText(SignUpActivity.this, "Successfully Registed...", Toast.LENGTH_SHORT).show();
-                    finish();
+                if (!(response == null)) {
+                    RegisterMainResponse model = new Gson().fromJson(new String(String.valueOf(response)), RegisterMainResponse.class);
+                    if (model.getStatus().equalsIgnoreCase("true")) {
+                        Utils.WriteSharePrefrence(SignUpActivity.this, Constant.USERID, model.getData().getId());
+                        String user_id = Utils.ReadSharePrefrence(SignUpActivity.this, Constant.USERID);
+                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                        Toast.makeText(SignUpActivity.this, "Successfully Registed...", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                 }
 
             }

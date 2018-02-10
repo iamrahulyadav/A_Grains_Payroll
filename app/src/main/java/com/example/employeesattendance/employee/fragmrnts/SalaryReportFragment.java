@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.employeesattendance.R;
 import com.example.employeesattendance.employee.model.MonthlyReportResponse;
@@ -40,13 +41,18 @@ public class SalaryReportFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_salary_report, container, false);
+
         txt_employeename = view.findViewById(R.id.txt_employeename);
         txt_privuousmonth = view.findViewById(R.id.txt_privuousmonth);
         txt_totalhours = view.findViewById(R.id.txt_totalhours);
         txt_overtimehours = view.findViewById(R.id.txt_overtimehours);
         txt_totalsalary = view.findViewById(R.id.txt_totalsalary);
 
-        getMonthlyReport();
+        if (Utils.isConnectingToInternet(getActivity())) {
+            getMonthlyReport();
+        }else {
+            Toast.makeText(getActivity(), "No Internet connection...", Toast.LENGTH_SHORT).show();
+        }
 
         return view;
     }
@@ -79,13 +85,15 @@ public class SalaryReportFragment extends Fragment {
                 super.onSuccess(statusCode, headers, response);
                 Log.e(TAG, "LOGIN RESPONSE-" + response);
                 pd.dismiss();
-                MonthlyReportResponse model =new Gson().fromJson(new String(String.valueOf(response)),MonthlyReportResponse.class);
-                if (model.getStatus().equalsIgnoreCase("true")) {
-                    txt_employeename.setText(model.getData().getFirst_name());
-                    txt_privuousmonth.setText(model.getData().getDate());
-                    txt_totalhours.setText(model.getData().getWorking_hour());
-                    txt_overtimehours.setText(model.getData().getOver_time_hour());
-                    txt_totalsalary.setText(model.getData().getTotal_salary());
+                if (!(response == null)) {
+                    MonthlyReportResponse model = new Gson().fromJson(new String(String.valueOf(response)), MonthlyReportResponse.class);
+                    if (model.getStatus().equalsIgnoreCase("true")) {
+                        txt_employeename.setText(model.getData().getFirst_name());
+                        txt_privuousmonth.setText(model.getData().getDate());
+                        txt_totalhours.setText(model.getData().getWorking_hour());
+                        txt_overtimehours.setText(model.getData().getOver_time_hour());
+                        txt_totalsalary.setText(model.getData().getTotal_salary());
+                    }
                 }
             }
 

@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.employeesattendance.utils.Constant;
 import com.example.employeesattendance.utils.ImageFilePath;
@@ -96,7 +97,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         img_edit_email.setOnClickListener(this);
         btn_save_email.setOnClickListener(this);
 
-        getUserProfile();
+        if (Utils.isConnectingToInternet(getActivity())) {
+            getUserProfile();
+        }else {
+            Toast.makeText(getActivity(), "No Internet connection...", Toast.LENGTH_SHORT).show();
+        }
 
         return view;
     }
@@ -129,24 +134,26 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 Log.e(TAG, "Driver RESPONSE-" + response);
-                GetProfileResponse model = new Gson().fromJson(new String(String.valueOf(response)), GetProfileResponse.class);
                 pd.dismiss();
-                if (model.getStatus().equalsIgnoreCase("true")) {
-                    txt_employee_name.setText(model.getData().getFirst_name()+" "+model.getData().getLast_name());
-                    Utils.WriteSharePrefrence(getActivity(),Constant.USER_NAME,model.getData().getFirst_name()+" "+model.getData().getLast_name());
-                    String user_name = Utils.ReadSharePrefrence(getActivity(),Constant.USER_NAME);
-                    txt_employee_num.setText(model.getData().getMobile_no());
-                    Utils.WriteSharePrefrence(getActivity(),Constant.PHONE_NUM,model.getData().getMobile_no());
-                    String phone_num = Utils.ReadSharePrefrence(getActivity(),Constant.PHONE_NUM);
-                    txt_employee_email.setText(model.getData().getEmail());
-                    Utils.WriteSharePrefrence(getActivity(),Constant.EMAIL,model.getData().getEmail());
-                    String email_id = Utils.ReadSharePrefrence(getActivity(),Constant.EMAIL);
-                    if (model.getData().getImage().isEmpty()) {
-                        Picasso.with(getActivity()).load(R.drawable.ic_prifile_blue);
-                    } else {
-                        Picasso.with(getActivity()).load(model.getData().getImage()).placeholder(R.drawable.ic_prifile_blue).into(img_profile_pic);
-                    }
+                if (!(response == null)) {
+                    GetProfileResponse model = new Gson().fromJson(new String(String.valueOf(response)), GetProfileResponse.class);
+                    if (model.getStatus().equalsIgnoreCase("true")) {
+                        txt_employee_name.setText(model.getData().getFirst_name() + " " + model.getData().getLast_name());
+                        Utils.WriteSharePrefrence(getActivity(), Constant.USER_NAME, model.getData().getFirst_name() + " " + model.getData().getLast_name());
+                        String user_name = Utils.ReadSharePrefrence(getActivity(), Constant.USER_NAME);
+                        txt_employee_num.setText(model.getData().getMobile_no());
+                        Utils.WriteSharePrefrence(getActivity(), Constant.PHONE_NUM, model.getData().getMobile_no());
+                        String phone_num = Utils.ReadSharePrefrence(getActivity(), Constant.PHONE_NUM);
+                        txt_employee_email.setText(model.getData().getEmail());
+                        Utils.WriteSharePrefrence(getActivity(), Constant.EMAIL, model.getData().getEmail());
+                        String email_id = Utils.ReadSharePrefrence(getActivity(), Constant.EMAIL);
+                        if (model.getData().getImage().isEmpty()) {
+                            Picasso.with(getActivity()).load(R.drawable.ic_prifile_blue);
+                        } else {
+                            Picasso.with(getActivity()).load(model.getData().getImage()).placeholder(R.drawable.ic_prifile_blue).into(img_profile_pic);
+                        }
 
+                    }
                 }
             }
 
@@ -166,14 +173,30 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                 linear_edit_number.setVisibility(View.VISIBLE);
                 break;
             case R.id.btn_save_num:
-                editphonenumber();
+                if (edt_num.getText().toString().isEmpty()){
+                    edt_num.setError("Please Enter Phone Number");
+                }else {
+                    if (Utils.isConnectingToInternet(getActivity())) {
+                        editphonenumber();
+                    }else {
+                        Toast.makeText(getActivity(), "No Internet connection...", Toast.LENGTH_SHORT).show();
+                    }
+                }
                 break;
             case R.id.img_edit_email:
                 linear_email.setVisibility(View.GONE);
                 linear_edit_email.setVisibility(View.VISIBLE);
                 break;
             case R.id.btn_save_email:
-                editemail();
+                if (edt_email.getText().toString().isEmpty()){
+                    edt_email.setError("Please Enter Email Address");
+                }else {
+                    if (Utils.isConnectingToInternet(getActivity())) {
+                        editemail();
+                    }else {
+                        Toast.makeText(getActivity(), "No Internet connection...", Toast.LENGTH_SHORT).show();
+                    }
+                }
                 break;
             case R.id.img_profile_pic:
                 SelectProfile();
@@ -211,12 +234,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 Log.e(TAG, "RESPONSE-" + response);
-                GetEditProfileResponse model = new Gson().fromJson(new String(String.valueOf(response)), GetEditProfileResponse.class);
                 pd.dismiss();
-                if (model.getStatus().equalsIgnoreCase("true")) {
-                    linear_edit_email.setVisibility(View.GONE);
-                    linear_email.setVisibility(View.VISIBLE);
-                    txt_employee_email.setText(model.getData().getEmail());
+                if (!(response == null)) {
+                    GetEditProfileResponse model = new Gson().fromJson(new String(String.valueOf(response)), GetEditProfileResponse.class);
+                    if (model.getStatus().equalsIgnoreCase("true")) {
+                        linear_edit_email.setVisibility(View.GONE);
+                        linear_email.setVisibility(View.VISIBLE);
+                        txt_employee_email.setText(model.getData().getEmail());
+                    }
                 }
             }
 
@@ -257,14 +282,16 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
-                Log.e(TAG, "Driver RESPONSE-" + response);
-                GetEditProfileResponse model = new Gson().fromJson(new String(String.valueOf(response)), GetEditProfileResponse.class);
                 pd.dismiss();
-                if (model.getStatus().equalsIgnoreCase("true")) {
-                    linear_edit_number.setVisibility(View.GONE);
-                    linear_number.setVisibility(View.VISIBLE);
-                    txt_employee_num.setText(model.getData().getMobile_no());
+                Log.e(TAG, "Driver RESPONSE-" + response);
+                if (!(response == null)) {
+                    GetEditProfileResponse model = new Gson().fromJson(new String(String.valueOf(response)), GetEditProfileResponse.class);
+                    if (model.getStatus().equalsIgnoreCase("true")) {
+                        linear_edit_number.setVisibility(View.GONE);
+                        linear_number.setVisibility(View.VISIBLE);
+                        txt_employee_num.setText(model.getData().getMobile_no());
 
+                    }
                 }
             }
 
@@ -314,7 +341,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                 if (data != null) {
                     Uri imageUri = data.getData();
                     imagePath = ImageFilePath.getPath(getActivity(), data.getData());
-                    editProfilePic();
+                    if (Utils.isConnectingToInternet(getActivity())) {
+                        editProfilePic();
+                    }else {
+                        Toast.makeText(getActivity(), "No Internet connection...", Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             }
         }
@@ -354,17 +386,17 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 Log.e(TAG, "Profile RESPONSE-" + response);
-                ProfilePicResponse model = new Gson().fromJson(new String(String.valueOf(response)), ProfilePicResponse.class);
                 pd.dismiss();
-                if (model.getStatus().equalsIgnoreCase("true")){
-                    if (model.getData().getImage().isEmpty()) {
-                        Picasso.with(getActivity()).load(R.drawable.ic_prifile_blue);
-                    } else {
-                        Picasso.with(getActivity()).load(model.getData().getImage()).placeholder(R.drawable.ic_prifile_blue).into(img_profile_pic);
+                if (!(response == null)) {
+                    ProfilePicResponse model = new Gson().fromJson(new String(String.valueOf(response)), ProfilePicResponse.class);
+                    if (model.getStatus().equalsIgnoreCase("true")) {
+                        if (model.getData().getImage().isEmpty()) {
+                            Picasso.with(getActivity()).load(R.drawable.ic_prifile_blue);
+                        } else {
+                            Picasso.with(getActivity()).load(model.getData().getImage()).placeholder(R.drawable.ic_prifile_blue).into(img_profile_pic);
+                        }
                     }
                 }
-
-
             }
 
             @Override

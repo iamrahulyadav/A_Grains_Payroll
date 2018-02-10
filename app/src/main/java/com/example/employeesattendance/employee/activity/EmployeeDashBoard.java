@@ -18,6 +18,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.employeesattendance.employee.fragmrnts.HelpFragment;
 import com.example.employeesattendance.employee.model.GetProfileResponse;
@@ -73,7 +74,12 @@ public class EmployeeDashBoard extends AppCompatActivity  {
         img_profile = (ImageView) findViewById(R.id.img_profile);
         txt_profilFirstname = (TextView) findViewById(R.id.txt_profilFirstname);
 
-        getProfile();
+        if (Utils.isConnectingToInternet(EmployeeDashBoard.this)) {
+            getProfile();
+        }else {
+            Toast.makeText(this, "No Internet connection...", Toast.LENGTH_SHORT).show();
+
+        }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         openDefaultFragment();
@@ -155,15 +161,19 @@ public class EmployeeDashBoard extends AppCompatActivity  {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 Log.e(TAG, "Driver RESPONSE-" + response);
-                GetProfileResponse model = new Gson().fromJson(new String(String.valueOf(response)), GetProfileResponse.class);
-                if (model.getStatus().equalsIgnoreCase("true")) {
-                    txt_profilFirstname.setText(model.getData().getFirst_name());
-                    if (model.getData().getImage().isEmpty()) {
-                        Picasso.with(EmployeeDashBoard.this).load(R.drawable.ic_profile_lite);
-                    } else {
-                        Picasso.with(EmployeeDashBoard.this).load(model.getData().getImage()).placeholder(R.drawable.ic_profile_lite).into(img_profile);
-                    }
+                if (!(response == null)) {
+                    GetProfileResponse model = new Gson().fromJson(new String(String.valueOf(response)), GetProfileResponse.class);
+                    if (model.getStatus().equalsIgnoreCase("true")) {
+                        txt_profilFirstname.setText(model.getData().getFirst_name());
+                        if (model.getData().getImage().isEmpty()) {
+                            Picasso.with(EmployeeDashBoard.this).load(R.drawable.ic_profile_lite);
+                        } else {
+                            Picasso.with(EmployeeDashBoard.this).load(model.getData().getImage()).placeholder(R.drawable.ic_profile_lite).into(img_profile);
+                        }
 
+                    }
+                }else {
+                    Toast.makeText(EmployeeDashBoard.this, "", Toast.LENGTH_SHORT).show();
                 }
             }
 
