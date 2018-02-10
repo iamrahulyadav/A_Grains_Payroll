@@ -28,9 +28,6 @@
         <activity android:name=".employee.activity.LoginActivity" />
         <activity android:name=".employee.activity.ForgotpasswordActivity" />
         <activity android:name=".employee.activity.EmployeeDashBoard" />
-        <activity android:name=".employee.activity.MonthlyReportActivity">
-
-        </activity>
     </application>
 
 </manifest>

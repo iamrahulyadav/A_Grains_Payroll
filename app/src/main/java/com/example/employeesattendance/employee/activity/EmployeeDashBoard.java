@@ -52,7 +52,7 @@ public class EmployeeDashBoard extends AppCompatActivity  {
     public ImageView admin_toolbar_profile;
     public RecyclerView recyclerView;
     private ProgressDialog pd;
-    private TextView txt_home,txt_profilFirstname, txt_profilLastname, txt_attendance, txt_salary_report, txt_help, txt_logout,txt_profile;
+    private TextView txt_home,txt_profilFirstname, txt_attendance, txt_salary_report, txt_help, txt_logout,txt_profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,6 @@ public class EmployeeDashBoard extends AppCompatActivity  {
             }
         });
         img_profile = (ImageView) findViewById(R.id.img_profile);
-        txt_profilLastname = (TextView) findViewById(R.id.txt_profilLastname);
         txt_profilFirstname = (TextView) findViewById(R.id.txt_profilFirstname);
 
         getProfile();
@@ -159,7 +158,6 @@ public class EmployeeDashBoard extends AppCompatActivity  {
                 GetProfileResponse model = new Gson().fromJson(new String(String.valueOf(response)), GetProfileResponse.class);
                 if (model.getStatus().equalsIgnoreCase("true")) {
                     txt_profilFirstname.setText(model.getData().getFirst_name());
-                    txt_profilLastname.setText(model.getData().getLast_name());
                     if (model.getData().getImage().isEmpty()) {
                         Picasso.with(EmployeeDashBoard.this).load(R.drawable.ic_profile_lite);
                     } else {
