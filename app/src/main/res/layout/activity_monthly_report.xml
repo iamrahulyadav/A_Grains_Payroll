@@ -41,6 +41,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:text="Name :"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:textSize="@dimen/_16sdp"/>
+                </RelativeLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/view_bg"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -91,7 +122,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textSize="@dimen/_13sdp"
-                    android:text="Full Days :"/>
+                    android:text="Total Hours :"/>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -118,7 +149,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textSize="@dimen/_13sdp"
-                    android:text="Overtime Days :"/>
+                    android:text="Overtime Hours :"/>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -135,60 +166,6 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:textSize="@dimen/_13sdp"
-                    android:text="Overtime :"/>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginEnd="@dimen/_180sdp"
-                        android:layout_marginRight="@dimen/_150sdp"
-                        android:textSize="@dimen/_13sdp"/>
-                </RelativeLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:textSize="@dimen/_13sdp"
-                    android:text="Overtime Salary :"/>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginEnd="@dimen/_180sdp"
-                        android:layout_marginRight="@dimen/_150sdp"
-                        android:textSize="@dimen/_13sdp"/>
-                </RelativeLayout>
-            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"

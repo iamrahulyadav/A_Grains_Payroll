@@ -62,7 +62,6 @@ public class AttendanceReportFragment extends Fragment implements View.OnClickLi
             }
         });
 
-
         return view;
     }
 
