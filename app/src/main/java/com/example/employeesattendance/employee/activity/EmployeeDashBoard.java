@@ -59,11 +59,12 @@ public class EmployeeDashBoard extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_dash_board);
-        toolbar = (Toolbar) findViewById(R.id.admin_toolbar);
+
+        toolbar = findViewById(R.id.admin_toolbar);
         setSupportActionBar(toolbar);
-        toolbar_icon = (ImageView) findViewById(R.id.admin_toolbar_icon);
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        toolbar_title2 = (TextView) findViewById(R.id.admin_toolbar_title);
+        toolbar_icon = findViewById(R.id.admin_toolbar_icon);
+        drawer = findViewById(R.id.drawer_layout);
+        toolbar_title2 = findViewById(R.id.admin_toolbar_title);
         toolbar_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +72,8 @@ public class EmployeeDashBoard extends AppCompatActivity  {
                     drawer.openDrawer(Gravity.START);
             }
         });
+        img_profile = findViewById(R.id.img_profile);
+        txt_profilFirstname = findViewById(R.id.txt_profilFirstname);
         img_profile = (ImageView) findViewById(R.id.img_profile);
         txt_profilFirstname = (TextView) findViewById(R.id.txt_profilFirstname);
 

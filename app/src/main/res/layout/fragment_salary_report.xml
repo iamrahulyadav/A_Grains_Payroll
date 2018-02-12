@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".employee.fragmrnts.SalaryReportFragment">
 
@@ -10,39 +9,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_10sdp"
-                android:textSize="@dimen/_16sdp"
-                android:text="Name :"/>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:text="Name :"
+                android:textSize="@dimen/_16sdp" />
 
                 <TextView
                     android:id="@+id/txt_employeename"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_gravity="center"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/_15sdp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginEnd="@dimen/_15sdp"
-                    android:textSize="@dimen/_16sdp"/>
-            </RelativeLayout>
+                    android:textSize="@dimen/_16sdp" />
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="@color/view_bg"/>
+            android:background="@color/view_bg" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,8 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_10sdp"
-                android:textSize="@dimen/_16sdp"
-                android:text="@string/month"/>
+                android:text="@string/month"
+                android:textSize="@dimen/_16sdp" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -66,22 +63,24 @@
                     android:id="@+id/txt_privuousmonth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/_15sdp"
                     android:layout_alignParentRight="true"
                     android:layout_marginEnd="@dimen/_15sdp"
-                    android:textSize="@dimen/_16sdp"
-                    android:text="Feb 2018"/>
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:text="Feb 2018"
+                    android:textSize="@dimen/_16sdp" />
             </RelativeLayout>
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="@color/view_bg"/>
+            android:background="@color/view_bg" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/_15sdp">
+            android:layout_marginTop="@dimen/_15sdp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,55 +88,45 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:textSize="@dimen/_13sdp"
-                    android:text="Total Hours :"/>
+                    android:layout_weight="0.5"
+                    android:text="Total Hours :"
+                    android:textSize="@dimen/_13sdp" />
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/txt_totalhours"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_gravity="center"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                    android:textSize="@dimen/_13sdp" />
 
-                    <TextView
-                        android:id="@+id/txt_totalhours"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginEnd="@dimen/_15sdp"
-                        android:layout_marginRight="@dimen/_15sdp"
-                        android:textSize="@dimen/_13sdp"/>
-                </RelativeLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:textSize="@dimen/_13sdp"
-                    android:text="Overtime Hours :"/>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                    android:text="Overtime Hours :"
+                    android:textSize="@dimen/_13sdp" />
 
                     <TextView
                         android:id="@+id/txt_overtimehours"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_gravity="center"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginEnd="@dimen/_15sdp"
-                        android:layout_marginRight="@dimen/_15sdp"
-                        android:textSize="@dimen/_13sdp"/>
-                </RelativeLayout>
+                        android:textSize="@dimen/_13sdp" />
             </LinearLayout>
 
             <LinearLayout
@@ -146,34 +135,32 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:textSize="@dimen/_13sdp"
-                    android:text="Total Salary :"/>
+                    android:text="Total Salary :"
+                    android:textSize="@dimen/_13sdp" />
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
 
                     <TextView
                         android:id="@+id/txt_totalsalary"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_gravity="center"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginEnd="@dimen/_15sdp"
-                        android:layout_marginRight="@dimen/_15sdp"
-                        android:textSize="@dimen/_13sdp"/>
-                </RelativeLayout>
+                        android:textSize="@dimen/_13sdp" />
+
             </LinearLayout>
 
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="@color/view_bg"/>
+            android:background="@color/view_bg" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
@@ -184,13 +171,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_10sdp"
-                android:textSize="@dimen/_16sdp"
-                android:text="Advance Report"/>
+                android:text="Advance Report"
+                android:textSize="@dimen/_16sdp" />
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="@color/colorPrimaryDark"/>
+            android:background="@color/colorPrimaryDark" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_30sdp"
@@ -202,8 +191,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_10sdp"
-                android:textSize="@dimen/_13sdp"
-                android:text="09-02-2018 :"/>
+                android:text="09-02-2018 :"
+                android:textSize="@dimen/_13sdp" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -217,14 +206,15 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginEnd="@dimen/_15sdp"
                     android:layout_marginRight="@dimen/_15sdp"
-                    android:textSize="@dimen/_13sdp"/>
+                    android:textSize="@dimen/_13sdp" />
             </RelativeLayout>
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="@color/view_bg"/>
+            android:background="@color/view_bg" />
     </LinearLayout>
 
-    
+
 </LinearLayout>

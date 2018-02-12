@@ -38,17 +38,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        txt_signupactivity = (TextView) findViewById(R.id.txt_signupactivity);
+        txt_signupactivity = findViewById(R.id.txt_signupactivity);
 
-        edit_email_login = (EditText) findViewById(R.id.edit_email_login);
-        edit_pass_login = (EditText) findViewById(R.id.edit_pass_login);
+        edit_email_login = findViewById(R.id.edit_email_login);
+        edit_pass_login = findViewById(R.id.edit_pass_login);
 
         edit_email_login.addTextChangedListener(new MyTextWatcher(edit_email_login));
         edit_pass_login.addTextChangedListener(new MyTextWatcher(edit_pass_login));
 
-
-        btn_signin = (Button) findViewById(R.id.btn_signin);
-        btn_Dforgot_pass = (Button) findViewById(R.id.btn_Dforgot_pass);
+        btn_signin = findViewById(R.id.btn_signin);
+        btn_Dforgot_pass = findViewById(R.id.btn_Dforgot_pass);
 
         txt_signupactivity.setOnClickListener(this);
         btn_signin.setOnClickListener(this);

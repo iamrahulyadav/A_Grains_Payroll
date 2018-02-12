@@ -27,7 +27,6 @@
                 android:textSize="@dimen/_18sdp"
                 android:textColor="@color/white" />
 
-
             <ImageView
                 android:id="@+id/admin_toolbar_icon"
                 android:layout_width="@dimen/_40sdp"
@@ -38,8 +37,11 @@
                 android:layout_centerVertical="true"
                 android:padding="@dimen/_7sdp"
                 android:src="@drawable/ic_drawer" />
+
         </RelativeLayout>
+
     </android.support.v7.widget.Toolbar>
 
     <include layout="@layout/content_admin_main" />
+
 </LinearLayout>

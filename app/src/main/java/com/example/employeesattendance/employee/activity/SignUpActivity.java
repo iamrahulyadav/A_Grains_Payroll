@@ -44,12 +44,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         edit_email = (EditText) findViewById(R.id.edit_email);
         edit_pass = (EditText) findViewById(R.id.edit_pass);
 
-        edit_name.addTextChangedListener(new MyTextWatcher(edit_name));
-        edit_last.addTextChangedListener(new MyTextWatcher(edit_last));
-        edit_number.addTextChangedListener(new MyTextWatcher(edit_number));
-        edit_email.addTextChangedListener(new MyTextWatcher(edit_email));
-        edit_pass.addTextChangedListener(new MyTextWatcher(edit_pass));
-
         btn_signup = (Button) findViewById(R.id.btn_signup);
 
         btn_signup.setOnClickListener(this);
@@ -154,39 +148,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
                 Log.e(TAG, throwable.getMessage());
+                Toast.makeText(SignUpActivity.this, "", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private class MyTextWatcher implements TextWatcher {
-
-        private View view;
-
-        private MyTextWatcher(View view) {
-            this.view = view;
-        }
-
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        }
-
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        }
-
-        public void afterTextChanged(Editable editable) {
-            switch (view.getId()) {
-                case R.id.edit_name:
-                    break;
-                case R.id.edit_last:
-                    break;
-                case R.id.edit_number:
-                    break;
-                case R.id.edit_email:
-                    break;
-                case R.id.edit_pass:
-                    break;
-
-            }
-        }
     }
 
 }

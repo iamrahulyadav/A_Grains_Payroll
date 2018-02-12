@@ -20,6 +20,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -86,13 +87,20 @@ public class SalaryReportFragment extends Fragment {
                 Log.e(TAG, "LOGIN RESPONSE-" + response);
                 pd.dismiss();
                 if (!(response == null)) {
-                    MonthlyReportResponse model = new Gson().fromJson(new String(String.valueOf(response)), MonthlyReportResponse.class);
+                    MonthlyReportResponse model = new Gson().fromJson(String.valueOf(response), MonthlyReportResponse.class);
                     if (model.getStatus().equalsIgnoreCase("true")) {
                         txt_employeename.setText(model.getData().getFirst_name());
                         txt_privuousmonth.setText(model.getData().getDate());
                         txt_totalhours.setText(model.getData().getWorking_hour());
                         txt_overtimehours.setText(model.getData().getOver_time_hour());
                         txt_totalsalary.setText(model.getData().getTotal_salary());
+                    }
+                    else {
+                        try {
+                            Toast.makeText(getActivity(), response.getString("msg"), Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -101,6 +109,7 @@ public class SalaryReportFragment extends Fragment {
             public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
                 Log.e(TAG, throwable.getMessage());
+                Toast.makeText(getActivity(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
